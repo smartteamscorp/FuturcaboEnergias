@@ -1,0 +1,77 @@
+/* Estilos para dispositivos grandes */
+@media screen and (min-width: 768px) {
+    .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(62, 148, 240, 0.8); /* Fundo quase preto */
+        width: 100%;
+        height: 100vh;
+        z-index: -10;
+    }
+
+    .preview {
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,0.40);
+        border-radius: 10px;
+        width: 238px;
+        height: 426px;
+        margin-right: 40px;
+    }
+
+    ul li a {
+        color: #000000; /* Letra branca */
+        font-size: 26px;
+        letter-spacing: 0.89px;
+        text-transform: uppercase;
+        padding: 4px 0;
+        display: flex;
+        opacity: .45;
+        transition: all .3s;
+    }
+
+    ul li a:hover {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.5); /* Altera a cor ao passar o mouse */
+    }
+}
+
+/* Estilos para dispositivos pequenos */
+@media screen and (max-width: 767px) {
+    .menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(37, 59, 187, 0.8); /* Fundo quase preto */
+        width: 100%;
+        height: 100vh;
+        z-index: -10;
+    }
+
+    .preview {
+        box-shadow: 0 2px 12px 0 rgba(109, 133, 209, 0.4);
+        border-radius: 10px;
+        width: 80%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    ul li a {
+        color: #fff; /* Letra branca */
+        font-size: 26px;
+        letter-spacing: 0.89px;
+        text-transform: uppercase;
+        padding: 4px 0;
+        display: flex;
+        opacity: .45;
+        transition: all .3s;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    ul li a:hover {
+        opacity: 1;
+        background-color: rgba(255, 254, 254, 0.935); /* Altera a cor ao passar o mouse */
+    }
+}
