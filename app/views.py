@@ -527,3 +527,8 @@ def consultar_marcacoes_route():
     
     # Retornar os dados no formato JSON
     return jsonify(marcacoes)
+
+@app.route('/leads')
+def leads():
+    # Renderize o template correspondente à página "+ Leads"
+    return render_template('leads.html')
