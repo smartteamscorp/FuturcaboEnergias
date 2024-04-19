@@ -13,6 +13,8 @@ from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment
 import xlsxwriter
+from openpyxl import load_workbook
+import uuid
 
 
 
@@ -532,3 +534,104 @@ def consultar_marcacoes_route():
 def leads():
     # Renderize o template correspondente à página "+ Leads"
     return render_template('leads.html')
+
+# Verifica se a pasta para armazenar os leads existe, senão cria
+if not os.path.exists('leads_data'):
+    os.makedirs('leads_data')
+
+
+# Função para salvar a lead em um arquivo .xlsx
+def salvar_lead(data, filename='leads.xlsx'):
+    # Verifica se o arquivo já existe
+    if os.path.exists(filename):
+        # Se existe, carrega o arquivo existente
+        leads_df = pd.read_excel(filename)
+        # Adiciona a nova lead ao DataFrame
+        leads_df = leads_df.append(data, ignore_index=True)
+    else:
+        # Se não existe, cria um novo DataFrame com os dados da lead
+        leads_df = pd.DataFrame([data])
+    
+    # Salva o DataFrame como um arquivo .xlsx
+    leads_df.to_excel(filename, index=False)
+
+# Endpoint para inserir uma lead
+@app.route('/submit_lead', methods=['POST'])
+def submit_lead():
+    # Processa os dados recebidos do formulário e salva a lead em um arquivo .xlsx
+    data = request.form.to_dict()
+    salvar_lead(data)
+    
+    # Retorna uma resposta de sucesso
+    return jsonify({'message': 'Lead inserida com sucesso!'})
+
+
+# Endpoint para consultar leads no backoffice
+@app.route('/consultar_leads', methods=['GET'])
+def consultar_leads():
+    try:
+        # Ler os dados do arquivo leads.xlsx usando pandas
+        df = pd.read_excel('leads.xlsx')
+        
+        # Converter os dados para o formato JSON
+        leads = df.to_dict(orient='records')
+        
+        return jsonify(leads)
+    except Exception as e:
+        return jsonify({'error': str(e)})
+    
+# Rota para página de gestão de leads
+@app.route('/gestao_leads')
+def gestao_leads():
+    leads = ler_leads()
+    return render_template('gestao_leads.html', leads=leads)
+
+# Função para ler as leads do arquivo
+def ler_leads():
+    try:
+        # Ler os dados do arquivo leads_deliver_point.xlsx usando pandas
+        df = pd.read_excel('leads.xlsx')
+
+        # Converter os dados para o formato JSON
+        leads = df.to_dict(orient='records')
+
+        return leads
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+
+@app.route('/enviar_lead', methods=['POST'])
+def enviar_lead():
+    try:
+        # Obter os dados da solicitação
+        data = request.json
+        lead_id = data['leadId']
+        lead_type = data['leadType']
+        comercial = data['comercial']
+        observacao = data['observacao']
+        
+        # Obter data e hora atual
+        now = datetime.now()
+        data_hora = now.strftime("%Y-%m-%d %H:%M:%S")
+
+        # Verificar se o arquivo já existe
+        file_name = 'leads_deliver_point.xlsx'
+        if not os.path.exists(file_name):
+            # Se não existir, criar um novo DataFrame
+            df = pd.DataFrame(columns=['Data/Hora', 'Lead ID', 'Tipo de Lead', 'Comercial', 'Observação'])
+        else:
+            # Se existir, carregar o DataFrame do arquivo existente
+            df = pd.read_excel(file_name)
+
+        # Adicionar os dados da lead ao DataFrame
+        new_lead = {'Data/Hora': data_hora, 'Lead ID': lead_id, 'Tipo de Lead': lead_type, 'Comercial': comercial, 'Observação': observacao}
+        df = df.append(new_lead, ignore_index=True)
+
+        # Salvar o DataFrame atualizado no arquivo XLSX
+        df.to_excel(file_name, index=False)
+
+        # Responder com uma mensagem de sucesso
+        return jsonify({'message': 'Lead enviada com sucesso.'}), 200
+    except Exception as e:
+        # Em caso de erro, responder com uma mensagem de erro
+        return jsonify({'error': str(e)}), 500

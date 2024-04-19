@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>+ Leads</title>
+    <link rel="stylesheet" type="text/css" href="/static/leads.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#backoffice">Backoffice</a></li>
+                <li><a href="#comerciais">Comerciais</a></li>
+                <li><a href="#agentes">Agentes</a></li>
+            </ul>
+            <div class="user-menu">
+               
+                <span>Utilizador: Nome do Utilizador</span>
+                <a href="#logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    
+<section id="backoffice" class="section">
+    <div class="container">
+        <h2>Backoffice</h2>
+       
+        <button id="consultar_leads_backoffice" onclick="consultarLeads()">Consultar Leads no Sistema</button>
+        <form action="/submit_lead" method="POST">
+            <h3>Inserir Lead Manual</h3>
+            <label for="lead_type">Tipo de Lead:</label>
+            <select name="lead_type" id="lead_type">
+                <option value="comercializacao">Comercialização</option>
+                <option value="finalizada">Finalizada</option>
+            </select>
+            <label for="client_name">Nome do Cliente:</label>
+            <input type="text" id="client_name" name="client_name">
+            <label for="client_address">Morada do Cliente:</label>
+            <input type="text" id="client_address" name="client_address">
+            <label for="client_contact">Contacto do Cliente:</label>
+            <input type="text" id="client_contact" name="client_contact">
+            <button type="submit">Inserir Lead</button>
+        </form>
+     
+        <div class="tools">
+            <h3>Ferramentas do Backoffice</h3>
+            <ul>
+                <li><a href="/gestao_leads">Gestão de Leads</a></li>
+                <li><a href="#relatorios">Relatórios</a></li>
+                <li><a href="#suporte">Suporte</a></li>
+            </ul>
+        </div>
+        <p>Bem-vindo ao Backoffice. Aqui pode gerir o sistema de Leads, monitorizar o progresso das equipas e muito mais.</p>
+        <div class="crm-tools">
+            <h3>CRM</h3>
+            <ul>
+                <li><a href="#documentacao">Documentação - Pedir/Receber</a></li>
+                <li><a href="#analise-dados">Análise de Dados</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="comerciais" class="section">
+    <div class="container">
+        <h2>Gestores Comerciais</h2>
+        
+        <form action="/submit_lead" method="POST">
+            <h3>Nova Lead</h3>
+            <label for="lead_type">Tipo de Lead:</label>
+            <select name="lead_type" id="lead_type">
+                <option value="comercializacao">Comercialização</option>
+                <option value="finalizada">Finalizada</option>
+            </select>
+            <label for="client_name">Nome do Cliente:</label>
+            <input type="text" id="client_name" name="client_name">
+            <label for="client_address">Morada do Cliente:</label>
+            <input type="text" id="client_address" name="client_address">
+            <label for="client_contact">Contacto do Cliente:</label>
+            <input type="text" id="client_contact" name="client_contact">
+            <button type="submit">Inserir Lead</button>
+        </form>
+        
+        <div class="tools">
+            <h3>Ferramentas Gestores Comerciais</h3>
+            <ul>
+                <li><a href="#leads-em-andamento">Leads em Progresso</a></li>
+                <li><a href="#follow-up">Follow-up</a></li>
+                <li><a href="#resultados_leads">Resultados Leads</a></li>
+            </ul>
+        </div>
+        <p>Aqui pode visualizar e interagir com as leads em diferentes estágios do processo de vendas.</p>
+        <div class="crm-tools">
+            <h3>CRM</h3>
+            <ul>
+                <li><a href="#documentacao">Documentação</a></li>
+                <li><a href="#analise-dados">Análise de Dados</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section id="agentes" class="section">
+    <div class="container">
+        <h2>Agentes/Parceiros</h2>
+        
+        <form action="/submit_lead" method="POST">
+            <h3>Nova Lead de Agentes</h3>
+            <label for="lead_type">Tipo de Lead:</label>
+            <select name="lead_type" id="lead_type">
+                <option value="comercializacao">Comercialização</option>
+                <option value="finalizada">Finalizada</option>
+            </select>
+            <label for="client_name">Nome do Cliente:</label>
+            <input type="text" id="client_name" name="client_name">
+            <label for="client_address">Morada do Cliente:</label>
+            <input type="text" id="client_address" name="client_address">
+            <label for="client_contact">Contacto do Cliente:</label>
+            <input type="text" id="client_contact" name="client_contact">
+            <button type="submit">Inserir Lead</button>
+        </form>
+       
+        <div class="tools">
+            <h3>Ferramentas dos Agentes</h3>
+            <ul>
+                <li><a href="#minhas-leads">As Minhas Leads</a></li>
+                <li><a href="#feedback-comercial">Feedback Comercial</a></li>
+            </ul>
+        </div>
+        <p>Aqui pode solicitar novas leads e acompanhar o progresso das leads atribuídas a si.</p>
+        <div class="crm-tools">
+            <h3>CRM</h3>
+            <ul>
+                <li><a href="#documentacao">Documentação</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+    <section id="documentacao" class="section">
+        <div class="container">
+            <h2>Documentação</h2>
+            <p>Aqui pode aceder e gerir a documentação relacionada às leads e aos clientes.</p>
+        </div>
+    </section>
+
+
+    <section id="analise-dados" class="section">
+        <div class="container">
+            <h2>Análise de Dados</h2>
+            <p>Realize análises de dados para identificar tendências, oportunidades e métricas de desempenho das leads.</p>
+        </div>
+    </section>
+
+
+    <section id="feedback" class="section">
+        <div class="container">
+            <h2>Feedback</h2>
+            <p>Forneça feedback sobre o desempenho do sistema e partilhe ideias para melhorias.</p>
+        </div>
+    </section>
+    
+ 
+<div id="leadModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <div id="leadData"></div> 
+    </div>
+ </div>
+ 
+   
+    <footer class="footer">
+        <div class="container">
+            <p>&copy;RR | Futurcabo 2024 + Leads - SmartTeams - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+ 
+    <script src="{{ url_for('static', filename='leads.js') }}"></script>
+</body>
+</html>
