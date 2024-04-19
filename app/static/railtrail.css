@@ -1,0 +1,122 @@
+/* railtrail.css */
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Cor de fundo do corpo da página */
+    padding: 20px; /* Espaçamento interno */
+}
+
+h1 {
+    text-align: center; /* Centralizar o título */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+p {
+    margin-bottom: 10px; /* Espaçamento inferior dos parágrafos */
+}
+
+table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Colapso das bordas da tabela */
+    margin-bottom: 20px; /* Espaçamento inferior da tabela */
+}
+
+thead th,
+tbody td {
+    padding: 10px; /* Espaçamento interno das células */
+    border: 1px solid #ddd; /* Borda das células */
+    text-align: left; /* Alinhamento do texto à esquerda */
+}
+
+tbody td:last-child {
+    text-align: center; /* Alinhamento do texto ao centro para a última célula */
+}
+
+input[type="checkbox"] {
+    margin-left: auto; /* Margem à esquerda automática para alinhar à direita */
+    display: block; /* Exibir como bloco */
+}
+
+#confirmationModal {
+    display: none; /* Ocultar o modal de confirmação por padrão */
+    position: fixed; /* Posição fixa */
+    top: 50%; /* 50% do topo */
+    left: 50%; /* 50% da esquerda */
+    transform: translate(-50%, -50%); /* Centralizar vertical e horizontalmente */
+    background-color: #fff; /* Cor de fundo do modal */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    z-index: 1000; /* Z-index acima de outros elementos */
+}
+
+#confirmationMessage {
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+button {
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: #007bff; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Cantos arredondados */
+    cursor: pointer; /* Cursor de ponteiro */
+    margin-right: 10px; /* Margem direita */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+#analysisResults {
+    display: none; /* Ocultar os resultados da análise por padrão */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+#analysisResults h2 {
+    margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+#percentagensFornecedores,
+#valoresMediosFaturas {
+    list-style: none; /* Remover marcadores de lista */
+    padding-left: 0; /* Remover recuo do texto */
+}
+
+#percentagensFornecedores li,
+#valoresMediosFaturas li {
+    margin-bottom: 5px; /* Espaçamento inferior */
+}
+
+/* Regras de Mídia Query para Responsividade */
+
+/* Para telas menores que 768px (smartphones em modo paisagem e abaixo) */
+@media (max-width: 767px) {
+    h1 {
+        font-size: 24px; /* Reduzir o tamanho da fonte do título */
+    }
+
+    table {
+        font-size: 12px; /* Reduzir o tamanho da fonte da tabela */
+    }
+}
+
+/* Para telas entre 768px e 1024px (tablets e dispositivos maiores) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    table {
+        font-size: 14px; /* Reduzir o tamanho da fonte da tabela */
+    }
+}
+
+/* Para telas maiores que 1024px (desktops e dispositivos maiores) */
+@media (min-width: 1025px) {
+    /* Nenhuma alteração adicional necessária */
+}
