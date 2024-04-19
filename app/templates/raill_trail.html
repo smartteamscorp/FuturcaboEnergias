@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/railtrail.css">
+    <title>Rail Trail</title>
+</head>
+<body>
+    <h1>Dados do Rail Trail</h1>
+    <form id="addClientForm" action="/add_to_client_portfolio" method="post">
+        <p>Bem-Vindo: {{ logged_user }}</p>
+        <p>Data atual: {{ current_date }}</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for column in data[0].keys() %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                    <th>Selecionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                    <td><input type="checkbox" name="selected_clients" value="{{ row['Nome Cliente'] }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="hidden" id="selectedClient" name="selected_client">
+        <input type="submit" style="display: none;" id="submitButton" value="Adicionar à carteira de clientes">
+    </form>
+
+   
+    <div id="confirmationModal" style="display: none;">
+        <p id="confirmationMessage"></p>
+        <button onclick="confirmClient()">OK</button>
+        <button onclick="cancel()">Cancelar</button>
+    </div>
+
+ 
+    <button onclick="startRailTrail()">Iniciar Rail Trail</button>
+    <input type="hidden" id="data" value="{{ data | tojson | safe }}">
+
+
+    <button onclick="endOfDay()">Finalizar Dia</button>
+
+
+    <div id="analysisResults" style="display: none;">
+        <h2>Resultados da Análise</h2>
+        <p>Total de clientes falados: <span id="totalClientesFalados"></span></p>
+        <p>Total de portas batidas: <span id="totalPortasBatidas"></span></p>
+        <p>Percentagens de clientes por fornecedor de energia:</p>
+        <ul id="percentagensFornecedores"></ul>
+        <p>Valores médios das faturas de energia por fornecedor:</p>
+        <ul id="valoresMediosFaturas"></ul>
+        <p>Período horário de sucesso: <span id="periodoHorarioSucesso"></span></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='railtrail.js') }}"></script>
+</body>
+</html>
