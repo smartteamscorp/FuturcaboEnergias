@@ -1,0 +1,71 @@
+/* menu.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Cor de fundo do corpo da página */
+    display: flex; /* Para centralizar o menu na página */
+    justify-content: center; /* Para centralizar horizontalmente */
+    align-items: center; /* Para centralizar verticalmente */
+    min-height: 100vh; /* Altura mínima da janela */
+}
+
+.menu {
+    background-color: #343a40; /* Cor de fundo do menu */
+    color: #fff; /* Cor do texto do menu */
+    width: 200px; /* Largura do menu */
+    min-height: 80vh; /* Altura mínima do menu */
+    padding: 20px; /* Espaçamento interno do menu */
+    border-radius: 10px; /* Cantos arredondados do menu */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra para efeito 3D */
+    display: flex; /* Para alinhar os itens centralmente */
+    flex-direction: column; /* Para alinhar os itens verticalmente */
+    justify-content: center; /* Para centralizar verticalmente */
+    align-items: center; /* Para centralizar horizontalmente */
+}
+
+.menu h1 {
+    font-size: 24px;
+    text-align: center;
+    padding-bottom: 20px; /* Espaçamento inferior do cabeçalho */
+    border-bottom: 2px solid #fff; /* Linha divisória abaixo do cabeçalho */
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px 20px; /* Espaçamento interno dos itens do menu */
+    transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+    text-align: center; /* Alinhamento do texto dos itens do menu */
+}
+
+.menu ul li:hover {
+    background-color: #495057; /* Cor de fundo ao passar o mouse */
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.admin-button {
+    margin-top: auto; /* Empurra o botão "Admin" para a parte inferior do menu */
+    padding: 10px 20px; /* Espaçamento interno do botão "Admin" */
+    text-align: center;
+    text-decoration: none;
+    color: #007bff; /* Cor do texto do botão de admin */
+    background-color: transparent; /* Fundo transparente */
+    border: 2px solid #007bff; /* Borda sólida */
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Transição suave ao passar o mouse */
+}
+
+.admin-button:hover {
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: #fff; /* Cor do texto ao passar o mouse */
+}

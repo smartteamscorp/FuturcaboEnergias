@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/set_objectives.css">
+    <title>Definir Objetivos</title>
+</head>
+<body>
+    <h1>Definir Objetivos</h1>
+    <form action="/set_objectives" method="post">
+        <label for="gestor_comercial">Selecione o Gestor Comercial:</label>
+        <select id="gestor_comercial" name="gestor_comercial">
+            {% for usuario in usuarios_gestores %}
+            <option value="{{ usuario }}">{{ usuario }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="obj_ativos_mes">Objetivo Ativos por Mês:</label>
+        <input type="number" id="obj_ativos_mes" name="obj_ativos_mes" required><br><br>
+        
+        <label for="obj_fechos_mes">Objetivo Fechos por Mês:</label>
+        <input type="number" id="obj_fechos_mes" name="obj_fechos_mes" required><br><br>
+        
+        <label for="obj_quest_validos_dia">Objetivo Quest. Válidos por Dia:</label>
+        <input type="number" id="obj_quest_validos_dia" name="obj_quest_validos_dia" required><br><br>
+        
+        <label for="obj_quest_validos_semana">Objetivo Quest. Válidos por Semana:</label>
+        <input type="number" id="obj_quest_validos_semana" name="obj_quest_validos_semana" required><br><br>
+        
+        <label for="obj_quest_validos_mes">Objetivo Quest. Válidos por Mês:</label>
+        <input type="number" id="obj_quest_validos_mes" name="obj_quest_validos_mes" required><br><br>
+        
+        <button type="submit">Salvar Objetivos</button>
+    </form>
+</body>
+</html>

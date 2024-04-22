@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Comando de Resultados</title>
+    <link rel="stylesheet" type="text/css" href="/static/carregar_results.css">
+</head>
+<body>   
+    <header>
+        <h1>Centro de Comando de Resultados</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" id="team-btn">Adicionar Equipe</a></li>
+            <li><a href="#" id="individual-results-btn">Adicionar Resultados Individuais</a></li>
+            <li><a href="#" id="add-user-to-team-btn">Adicionar Usuário à Equipe</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="team-section">
+            <h2>Adicionar Equipe</h2>
+            <form id="team-form">
+                <label for="team-name">Nome da Equipe:</label>
+                <input type="text" id="team-name" name="team-name" required><br><br>
+                <button type="submit">Adicionar Equipe</button>
+            </form>
+        </section>
+        <section id="individual-results-section">
+            <h2>Adicionar Resultados Individuais</h2>
+            <form id="individual-results-form">
+                <label for="user-name">Nome do Usuário:</label>
+                <input type="text" id="user-name" name="user-name" required><br><br>
+                <label for="result-type">Tipo de Resultado:</label>
+                <select id="result-type" name="result-type" required>
+                    <option value="fechos">Fechos de Comercial</option>
+                    <option value="ativos">Ativos</option>
+                    <option value="cancelados">Cancelados</option>
+                </select><br><br>
+                <label for="result-quantity">Quantidade:</label>
+                <input type="number" id="result-quantity" name="result-quantity" min="0" required><br><br>
+                <button type="submit">Adicionar Resultado</button>
+            </form>
+        </section>
+        <section id="add-user-to-team-section">
+            <h2>Adicionar Usuário à Equipe</h2>
+            <form id="add-user-to-team-form">
+                <label for="team-name-select">Selecione a Equipe:</label>
+                <select id="team-name-select" name="team-name-select" required>
+                    <!-- Opções de equipe serão preenchidas dinamicamente pelo JavaScript -->
+                </select><br><br>
+                <label for="user-name-add">Nome do Usuário:</label>
+                <input type="text" id="user-name-add" name="user-name-add" required><br><br>
+                <button type="submit">Adicionar Usuário</button>
+            </form>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='carregar_results.js') }}"></script>
+</body>
+</html>

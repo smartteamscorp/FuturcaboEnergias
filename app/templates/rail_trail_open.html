@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rail Trail Diário</title>
+</head>
+<body>
+    <p>Clique no botão abaixo para processar os dados do dia :</p>
+    <form action="/process_data" method="post">
+        <button id="processarDadosBtn">Processar Dados</button>
+    </form>
+    <div id="analysisResults">
+        <h2>Resultados da Análise</h2>
+        <p>Total de clientes falados: <span id="totalClientesFalados"></span></p>
+        <p>Total de portas batidas: <span id="totalPortasBatidas"></span></p>
+        <p>Percentagens de clientes por fornecedor de energia:</p>
+        <ul id="percentagensFornecedores"></ul>
+        <p>Valores médios das faturas de energia por fornecedor:</p>
+        <ul id="valoresMediosFaturas"></ul>
+        <p>Período horário de sucesso: <span id="periodoHorarioSucesso"></span></p>
+    </div>
+    <script>
+        // Função para processar os dados
+        function processarDados() {
+    // Realizar solicitação AJAX para processar os dados
+    $.ajax({
+        url: '/process_data',
+        type: 'POST',
+        success: function(response) {
+            // Manipular os resultados recebidos na resposta
+            if (!response.error) {
+                // Atualizar os elementos HTML com os resultados
+                $('#totalClientesFalados').text(response.total_clientes_falados);
+                $('#totalPortasBatidas').text(response.total_portas_batidas);
+
+                // Atualizar as percentagens de clientes por fornecedor de energia
+                $('#percentagensFornecedores').empty();
+                $.each(response.percentagens_fornecedores, function(fornecedor, percentagem) {
+                    $('#percentagensFornecedores').append('<li>' + fornecedor + ': ' + percentagem.toFixed(2) + '%</li>');
+                });
+
+                // Atualizar os valores médios das faturas de energia por fornecedor
+                $('#valoresMediosFaturas').empty();
+                $.each(response.valores_medios_faturas, function(fornecedor, valorMedio) {
+                    $('#valoresMediosFaturas').append('<li>' + fornecedor + ': $' + valorMedio.toFixed(2) + '</li>');
+                });
+
+                $('#periodoHorarioSucesso').text(response.periodos_horarios_sucesso);
+            } else {
+                // Exibir mensagem de erro
+                alert('Ocorreu um erro: ' + response.error);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Exibir mensagem de erro
+            alert('Ocorreu um erro na solicitação AJAX: ' + error);
+        }
+    });
+}
+function fetchAnalysisResults() {
+    fetch('/process_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('analysisResults').innerHTML = data;
+    })
+    .catch(error => console.error('Erro ao processar os dados:', error));
+}
+// Chame esta função quando quiser exibir os resultados
+fetchAnalysisResults();
+    </script>
+</body>
+</html>

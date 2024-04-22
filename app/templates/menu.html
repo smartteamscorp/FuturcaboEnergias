@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" href="/static/menu.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="preview"></div>
+        <ul id="menu">
+            <li><a href="{{ url_for('feedbacks') }}">Feedbacks</a></li>           
+            <li><a href="{{ url_for('gestao_carteira') }}">Gestão de Carteira</a></li>            
+            <li><a href="{{ url_for('territorios') }}">Territórios</a></li>
+            <li><a href="{{ url_for('raill_trail') }}">Raill Trail</a></li>
+        </ul>
+        <a class="admin-button" href="{{ url_for('admin') }}">Admin</a>
+    </div>
+
+    
+
+</body>
+</html> 

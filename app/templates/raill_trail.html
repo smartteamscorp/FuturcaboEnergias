@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/railtrail.css">
+    <title>Rail Trail</title>
+</head>
+<body>
+    <h1>Dados do Rail Trail</h1>
+    <form id="addClientForm" action="/add_to_client_portfolio" method="post">
+        <p>Bem-Vindo: {{ logged_user }}</p>
+        <p>Data atual: {{ current_date }}</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for column in data[0].keys() %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                    <th>Selecionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                    <td><input type="checkbox" name="selected_clients" value="{{ row['Nome Cliente'] }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="hidden" id="selectedClient" name="selected_client">
+        <input type="submit" style="display: none;" id="submitButton" value="Adicionar à carteira de clientes">
+    </form>
+
+   
+    <div id="confirmationModal" style="display: none;">
+        <p id="confirmationMessage"></p>
+        <button onclick="confirmClient()">OK</button>
+        <button onclick="cancel()">Cancelar</button>
+    </div>
+
+    <a href="{{ url_for('rail_trail_open') }}">Processar Dados Dia</a>
+
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='railtrail.js') }}"></script>
+</body>
+</html>
